@@ -1,3 +1,4 @@
+[Discussion Post (created on 30/11/2021 at 18:43)](https://leetcode.com/problems/binary-watch/discuss/1656624/Easily-Understandable-C%2B%2B-Backtracking-Solution)  
 <h2>401. Binary Watch</h2><h3>Easy</h3><hr><div><p>A binary watch has 4 LEDs on the top which represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on the right.</p>
 
 <ul>
