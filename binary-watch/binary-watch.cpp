@@ -1,36 +1,34 @@
 class Solution {
 public:
     vector<string> readBinaryWatch(int turnedOn) {
-        vector<int> leds(10, 0);
-        return gen_time(0, turnedOn, leds);
+        bitset<10> leds;
+        vector<string> strings;
+        gen_time(0, turnedOn, leds, strings);
+        return strings;
     }
     
-    vector<string> gen_time(int id, int &turnedOn, vector<int> &leds) {
-        vector<string> vec;
+    void gen_time(int id, int &turnedOn, bitset<10> &leds, vector<string> &strings) {
         if(turnedOn == 0) {
             string time = get_time(leds);
-            if(time != "")
-                vec.push_back(get_time(leds));
-            return vec;
+            if(time != "invalid")
+                strings.push_back(time);
+            return;
         }
         if(id == leds.size())
-            return vec;
-        
+            return;
         turnedOn--;
         leds[id] = 1;
-        vec = gen_time(id+1, turnedOn, leds);
+        gen_time(id+1, turnedOn, leds, strings);
         turnedOn++;
         leds[id] = 0;
-        vector<string> vec1 = gen_time(id+1, turnedOn, leds);
-        vec.insert(vec.end(), vec1.begin(), vec1.end());
-        return vec;
+        gen_time(id+1, turnedOn, leds, strings);
     }
     
-    string get_time(vector<int> &leds) {
+    string get_time(bitset<10> &leds) {
         int hr_int = leds[3]*8 + leds[2]*4 + leds[1]*2 + leds[0];
         int min_int = leds[9]*32 + leds[8]*16 + leds[7]*8 + leds[6]*4 + leds[5]*2 + leds[4];
         if(hr_int >= 12 || min_int >= 60)
-            return "";
+            return "invalid";
         string hr = to_string(hr_int);
         string min = to_string(min_int);
         min = min.size() == 1 ? "0" + min : min;
