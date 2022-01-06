@@ -16,19 +16,17 @@ public:
             return NULL;
         stack<TreeNode*> st;
         st.push(root);
+        TreeNode* temp, *swap;
         while(!st.empty()) {
-            TreeNode* temp = st.top();
+            temp = st.top();
             st.pop();
-            if(temp == NULL)
-                continue;
-            TreeNode* right = temp->right;
-            TreeNode* left = temp->left;
-            temp->left = right;
-            temp->right = left;
+            swap = temp->right;
+            temp->right = temp->left;
+            temp->left = swap;
             if(temp->left != NULL)
-            st.push(temp->left);
+                st.push(temp->left);
             if(temp->right != NULL)
-            st.push(temp->right);
+                st.push(temp->right);
         }
         return root;
     }
