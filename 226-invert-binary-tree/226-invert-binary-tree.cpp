@@ -25,7 +25,9 @@ public:
             TreeNode* left = temp->left;
             temp->left = right;
             temp->right = left;
+            if(temp->left != NULL)
             st.push(temp->left);
+            if(temp->right != NULL)
             st.push(temp->right);
         }
         return root;
