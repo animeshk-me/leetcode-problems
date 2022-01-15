@@ -1,24 +1,20 @@
 class Solution {
 public:
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
-        vector<vector<int>> paths = find_all_paths(0, graph);
-        for(auto &path: paths)
-            reverse(path.begin(), path.end());
+        vector<int> path;
+        vector<vector<int>> paths;
+        find_all_paths(0, graph, path, paths);
         return paths;
     }
     
-    vector<vector<int>> find_all_paths(int source, vector<vector<int>> & graph) {
-        vector<vector<int>> paths, rec_paths;
+    void find_all_paths(int source, vector<vector<int>> & graph, vector<int> &path, vector<vector<int>> &paths) {
+        path.push_back(source);
         if(source == graph.size() - 1) 
-            paths.push_back(vector<int>(1, source));
+            paths.push_back(path);
         else {
-            for(int v : graph[source]) {
-                rec_paths = find_all_paths(v, graph);
-                for(auto &path : rec_paths)
-                    path.push_back(source);
-                paths.insert(paths.end(), rec_paths.begin(), rec_paths.end());
-            }
+            for(int v : graph[source]) 
+                find_all_paths(v, graph, path, paths);
         }
-        return paths;
+        path.pop_back();
     }
 };
