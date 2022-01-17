@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         vector<vector<string>> fin_vec;
-        unordered_map<string, int> string2i;
+        map<string, int> string2i;
         for(string &s : strs) {
             string sorted_s = get_sorted(s);
             auto it = string2i.find(sorted_s);
