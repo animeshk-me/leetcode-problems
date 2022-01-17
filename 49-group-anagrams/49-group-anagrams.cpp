@@ -16,8 +16,14 @@ public:
         return fin_vec;
     }
     
-    string get_sorted(string s) {
-        sort(s.begin(), s.end());
-        return s;
+    string get_sorted(const string &s) {
+        vector<int> freq(26, 0);
+        for(char c : s) freq[c-'a']++;
+        string copy;
+        for(int i = 0; i < 26; i++) {
+            while(freq[i]--)
+                copy += i+'a';
+        }
+        return copy;
     }
 };
