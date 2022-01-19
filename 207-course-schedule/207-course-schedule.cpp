@@ -5,12 +5,6 @@ public:
         for(vector<int> &p : prerequisites) 
             adj[p[1]].push_back(p[0]);
         vector<int> color(numCourses, 0);
-        // for(int i = 0; i < numCourses; i++) {
-        //     cout << i << ": ";
-        //     for(int x : adj[i])
-        //         cout << x << " ";
-        //     cout << endl;
-        // }
         for(int i = 0; i < color.size(); i++) {
             if(color[i] == 0) {
                 color[i] = 1;
