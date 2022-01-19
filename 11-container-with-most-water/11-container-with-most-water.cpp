@@ -1,6 +1,9 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
         int i = 0;
         int j = height.size() - 1;
         int max_ar = 0;
