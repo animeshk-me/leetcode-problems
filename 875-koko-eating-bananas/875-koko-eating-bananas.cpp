@@ -15,8 +15,7 @@ public:
                 return low;
             else if(get_val(piles, high) <= h)
                 return high;
-            else 
-                return -1;
+            return -1;
         }
         int mid = low + (high - low) / 2;
         if(get_val(piles, mid) <= h) {
@@ -25,8 +24,7 @@ public:
                 return mid;
             return ret_val;
         }
-        else
-            return bin_search(piles, mid+1, high, h);
+        return bin_search(piles, mid+1, high, h);
     }
     
     int get_val(const vector<int> &piles, int k) {  
