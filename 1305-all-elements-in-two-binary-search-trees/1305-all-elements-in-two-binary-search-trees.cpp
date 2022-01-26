@@ -13,24 +13,29 @@ class Solution {
 public:
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
         vector<int> vec;
-        get_final_vec(root1, vec);
-        get_final_vec(root2, vec);
-        sort(vec.begin(), vec.end());
-        return vec;
-    }
-    
-    
-    
-    
-    void get_final_vec(TreeNode* root, vector<int>& vec) {
-        stack<TreeNode*> st;
-        push_to_stack(st, root);
-        while(!st.empty()) {
-            TreeNode* temp = st.top();
-            st.pop();
+        stack<TreeNode*> st1, st2;
+        push_to_stack(st1, root1);
+        push_to_stack(st2, root2);
+        while(!st1.empty() && !st2.empty()) {
+            TreeNode* temp1 = st1.top();
+            TreeNode* temp2 = st2.top();
+            TreeNode* temp = (temp1->val < temp2->val) ? temp1 : temp2;
             vec.push_back(temp->val);
-            push_to_stack(st, temp->right);
+            if(temp == temp1){
+                st1.pop();
+                push_to_stack(st1, temp->right);
+            } else {
+                st2.pop();
+                push_to_stack(st2, temp->right);
+            }
         }
+        st1 = !st2.empty() ? st2 : st1;
+        while(!st1.empty()) {
+            TreeNode* temp = st1.top(); st1.pop();
+            vec.push_back(temp->val);
+            push_to_stack(st1, temp->right);
+        }
+        return vec;
     }
     
     void push_to_stack(stack<TreeNode*> &st, TreeNode* node) {
