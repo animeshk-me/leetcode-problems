@@ -15,18 +15,12 @@ public:
         m = Grid.size(); n = Grid[0].size();
         shortest_len = vector<vector<int>>(m, vector<int>(n, -1));
         find_shortest_lens();
-        vector<pair<int,int>> pairs;
-        pairs = get_pairs();
-        // for(auto p : pairs)
-        //     cout << "("<<p[0]<<","<<p[1]<<"),"; 
-        
+        vector<pair<int,int>> pairs = get_pairs();
         sort(pairs.begin(), pairs.end(), [this](pair<int,int> l, pair<int,int> r) {return comparator(l, r); });
-        // return pairs;
         vector<vector<int>> fin_pairs;
         for(int i = 0; i < k && i < pairs.size(); i++)
             fin_pairs.push_back(vector<int>{pairs[i].first, pairs[i].second});
         return fin_pairs;
-        // return pairs.size() <= k ? pairs : vector<vector<int>>(pairs.begin(), pairs.begin() + k);
     }
     
     
@@ -59,11 +53,9 @@ public:
         vector<pair<int,int>> pairs;
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
-                // cout << shortest_len[i][j] << ", ";
                 if(Grid[i][j] >= low && Grid[i][j] <= high && shortest_len[i][j] != -1)
                     pairs.push_back({i, j});
             }
-            // cout << endl;
         }
         return pairs;
     }
@@ -75,7 +67,6 @@ public:
         int num = 0;
         while(!Q.empty()) {
             int size = Q.size();
-            // cout << num << ", " << size << endl;
             while(size--) {
                 int x = Q.front().first;  int y = Q.front().second; Q.pop();
                 if(Grid[x][y] == 0) 
@@ -100,7 +91,6 @@ public:
             }
             num++;
         }
-        // cout << "hello\n";
     }
     
 };
