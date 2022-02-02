@@ -1,31 +1,14 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        QS(nums, 0, nums.size()-1);
-        
-        
-    }
-    
-    void QS(vector<int> &nums, int x, int y) {
-        if(x >= y)
-            return;
-        int p = partition(nums, x, y);
-        QS(nums, x, p-1);
-        QS(nums, p+1, y);
-    }
-    
-    int partition(vector<int> &nums, int x, int y) {
-        int l = x;
-        int i = x;
-        while(i != y) {
-            if(nums[i] < nums[y]) {
-                swap(nums[i], nums[l]);
-                l++;
-            }
-            i++;
+        vector<int> arr(3, 0);
+        for(int n: nums)
+            arr[n]++;
+        int i = 0;
+        for(int j = 0; j < 3; j++) {
+            for(int x = 0; x < arr[j]; x++)
+                nums[i+x] = j;
+            i += arr[j];
         }
-        swap(nums[y], nums[l]);
-        return l;
     }
-    
 };
