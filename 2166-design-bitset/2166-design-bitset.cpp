@@ -1,37 +1,38 @@
 class Bitset {
 public:
-    vector<bool> my_bitset;
-    vector<bool> my_flip_bitset;
+    string main_str;
+    string sub_str;
     int c;
     Bitset(int size) {
-        my_bitset = vector<bool>(size, false);
-        my_flip_bitset = vector<bool>(size, true);
+        main_str = string(size, '0');
+        sub_str = string(size, '1');
         c = 0;
     }
     
     void fix(int idx) {
-        if(!my_bitset[idx]) {
-            my_bitset[idx] = true;
-            my_flip_bitset[idx] = false;
+        if(main_str[idx] == '0') {
+            main_str[idx] = '1';
+            sub_str[idx] = '0';
             c++;
         }
     }
     
     void unfix(int idx) {
-        if(my_bitset[idx]) {
-            my_bitset[idx] = false;
-            my_flip_bitset[idx] = true;
+        if(main_str[idx] == '1') {
+            main_str[idx] = '0';
+            sub_str[idx] = '1';
             c--;
         }
     }
     
+    
     void flip() {
-        my_bitset.swap(my_flip_bitset);
-        c = my_bitset.size() - c;
+        main_str.swap(sub_str);
+        c = main_str.size() - c;
     }
     
     bool all() {
-        return c == my_bitset.size();
+        return c == main_str.size();
     }
     
     bool one() {
@@ -43,11 +44,7 @@ public:
     }
     
     string toString() {
-        string x = "";
-        for(bool is_set : my_bitset) {
-            x += is_set ? '1' : '0';
-        }
-        return x;
+        return main_str;
     }
 };
 
