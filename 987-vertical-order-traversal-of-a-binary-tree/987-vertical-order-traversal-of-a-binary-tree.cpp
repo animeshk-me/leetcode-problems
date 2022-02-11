@@ -16,9 +16,6 @@ public:
         int min_d = INT_MAX;
         int max_d = INT_MIN;
         get_dist(root, 0, dist, min_d, max_d);
-        // for(auto it : dist) {
-        //     cout << it.first << ": " << it.second << endl;
-        // }
         return level_order_bfs(root, dist, min_d, max_d);
     }
     
