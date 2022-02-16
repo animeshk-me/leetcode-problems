@@ -11,10 +11,11 @@ public:
         while(i--) {
             int sum = num1[i] + num2[i] + carry - 2*'0';
             carry = sum / 10;
-            fin_sum = (char)(sum%10 + '0') + fin_sum;
+            fin_sum += (char)(sum%10 + '0');
         }
         if(carry > 0)
-            fin_sum = (char)(carry + '0') + fin_sum;
+            fin_sum += (char)(carry + '0');
+        reverse(fin_sum.begin(), fin_sum.end());
         return fin_sum;
     }
     
