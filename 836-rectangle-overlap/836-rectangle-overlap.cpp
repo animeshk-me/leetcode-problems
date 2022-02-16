@@ -17,7 +17,6 @@ public:
             for(auto& eB : edges_B) {
                 if(intersect(eA, eB) || intersect(eB, eA))
                     return true;
-                // cout << eA[0].first << ", " << eA[0].second << "; " << eA[1].first << ", " << eA[1].second << " ---> " << eB[0].first << ", " << eB[0].second << "; " << eB[1].first << ", " << eB[1].second << endl;   
             }
         }
         return false;
