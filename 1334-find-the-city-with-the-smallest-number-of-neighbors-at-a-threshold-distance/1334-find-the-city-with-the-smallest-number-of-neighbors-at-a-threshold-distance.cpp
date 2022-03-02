@@ -44,7 +44,6 @@ public:
         }
         
         for(int i = 0; i < n; i++) {
-            vector<vector<long long>> temp = M;
             for(int x = 0; x < n; x++) {
                 if(x == i)
                     continue;
@@ -52,10 +51,9 @@ public:
                     if(y == i)
                         continue;
                     if(M[x][y] > M[x][i] + M[i][y])
-                        temp[x][y] = M[x][i] + M[i][y];
+                        M[x][y] = M[x][i] + M[i][y];
                 }
             }
-            M = temp;
         }
         return M;
     }
