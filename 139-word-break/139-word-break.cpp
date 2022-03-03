@@ -17,16 +17,6 @@ class Node {
         }
         temp->is_end = true;
     }
-    
-    void print(string s) {
-        if(is_end)
-            cout << s << endl;
-        for(int i = 0; i < 26; i++) {
-            char p = i + 'a';
-            if(children[i] != nullptr)
-                children[i]->print(s + p);
-        }
-    }
 };
 
 
@@ -37,7 +27,6 @@ public:
         vector<int> Memo(s.size(), -1);
         for(auto& word : wordDict)
             trie->insert(word);
-        // trie->print("");
         return is_valid_break(0, s, trie, Memo);
     }
     
