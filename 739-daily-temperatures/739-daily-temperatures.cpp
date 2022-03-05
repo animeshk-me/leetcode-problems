@@ -6,19 +6,13 @@ public:
         // for(int i = 0; i < 1e5; i++) {
         //     cout << rand() % 71 + 30 << ", ";
         // }
-        for(int i = temperatures.size() - 2; i >= 0; i--) {
-            int j = i + 1;
-            bool got = false;
-            while(temperatures[j] <= temperatures[i]) {
-                if(answer[j] == 0) {
-                    answer[i] = 0;
-                    got = true;
-                    break;
-                }
-                j = j + answer[j];
+        stack<int> S;
+        for(int i = 0; i < temperatures.size(); i++) {
+            while(!S.empty() && temperatures[S.top()] < temperatures[i]) {
+                answer[S.top()] = i - S.top();
+                S.pop();
             }
-            if(!got)
-                answer[i] = j - i;
+            S.push(i);
         }
         return answer;
     }
