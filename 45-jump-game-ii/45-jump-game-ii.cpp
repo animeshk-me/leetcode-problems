@@ -1,22 +1,23 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        vector<int> Memo(nums.size(), -1);
-        return foo(0, nums, Memo);
-    }
-    
-    int foo(int i, vector<int>& nums, vector<int>& Memo) {
-        if(i == nums.size() - 1)
-            return 0;
-        if(Memo[i] == -1) {
-            int min_val = INT_MAX;
-            for(int j = 1; j <= nums[i]; j++) {
-                if(i + j >= nums.size())
-                    break;
-                min_val = min(min_val, foo(i+j, nums, Memo));
+        int i = 0;
+        int count = 0;
+        int n = nums.size();
+        while(i < n - 1) {
+            cout << i << endl;
+            int m_j = i+1;
+            int val = 0;
+            int j;
+            for(j = i+1; j < n && j <= i+nums[i]; j++) {
+                if(val <= min(n-1, j + nums[j])) {
+                    val = min(n-1, j + nums[j]);
+                    m_j = j;
+                }
             }
-            Memo[i] = min_val == INT_MAX ? min_val : min_val + 1;
+            count++;
+            i = m_j;
         }
-        return Memo[i];
+        return count;
     }
 };
