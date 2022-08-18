@@ -1,27 +1,13 @@
 class Solution {
 public:
     int maximumDifference(vector<int>& nums) {
-        int max_val = -1;
-        int i = 0;
-        int n = nums.size();
-        vector<bool> visit(n, false);
-        while(i != n) {
-            if(visit[i]) {
-                i++;
-                continue;
-            }
-            int min_v = nums[i];
-            int max_v = min_v;
-            visit[i] = true;
-            for(int j = i; j < n; j++) {
-                if(nums[j] >= max_v) {
-                    max_v = nums[j];
-                    visit[j] = true;
-                }
-            }
-            max_val = max(max_val, max_v - min_v);
-            i++;
+        int min_val = nums[0];
+        int max_diff = -1;
+        for(int i = 1; i < nums.size(); i++) {
+            if(min_val < nums[i]) 
+                max_diff = max(max_diff, nums[i] - min_val);
+            min_val = min(min_val, nums[i]);
         }
-        return max_val > 0 ? max_val : -1;
+        return max_diff <= 0 ? -1 : max_diff;
     }
 };
