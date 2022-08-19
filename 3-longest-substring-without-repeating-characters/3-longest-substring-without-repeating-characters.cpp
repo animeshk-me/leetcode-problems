@@ -4,15 +4,23 @@ public:
         int i = 0;
         int j = i;
         int max_len = 0;
-        unordered_set<char> visit;
+        vector<bool> visit(195, false);
         while(j < s.size()) {
-            while(j < s.size() && visit.find(s[j]) == visit.end()) 
-                visit.insert(s[j++]);
+            while(j < s.size() && !visit[s[j] - ' ']) {
+                // cout << "hi: " << s[j] - ' ' << endl;
+                visit[s[j++] - ' '] = true;
+            }
             max_len = max(max_len, j - i);
-            while(s[i] != s[j]) 
-                visit.erase(s[i++]);
-            visit.erase(s[i++]);
+            if(j >= s.size())
+                break;
+            while(s[i] != s[j]) { 
+                // cout << "hi2: " <<  s[i] - ' ' << endl;
+                visit[s[i++] - ' '] = false;
+            }
+            // cout << "hi3: " << s[i] << ": " << i << ": " << j << ": "<< s[i] - ' ' << endl;
+            visit[s[i++] - ' '] = false;
         }
         return max_len;
     }
+// "abc;azq^%&*+(/*"
 };
