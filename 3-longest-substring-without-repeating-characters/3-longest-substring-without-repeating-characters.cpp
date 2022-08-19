@@ -6,7 +6,6 @@ public:
         int max_len = 0;
         unordered_set<char> visit;
         while(j < s.size()) {
-            // visit.insert(s[i]);
             while(j < s.size() && visit.find(s[j]) == visit.end()) 
                 visit.insert(s[j++]);
             max_len = max(max_len, j - i);
