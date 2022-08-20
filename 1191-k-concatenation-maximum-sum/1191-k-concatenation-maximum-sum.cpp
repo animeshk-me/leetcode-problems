@@ -1,9 +1,9 @@
 class Solution {
 public:
     int kConcatenationMaxSum(vector<int>& arr, int k) {
-        long long sub_sum = 0;
-        long long max_sum = 0;
-        long long sum = sub_sum;
+        long long sub_sum = 0;   // temporary sum value for max_sum
+        long long max_sum = 0;   // maximum subarray sum
+        long long sum = 0;       // sum of one array
         long long M = 1e9+7;
         for(int i = 0 ; i < min(k, 2)*arr.size(); i++) {
             if(i < arr.size())
